@@ -24,13 +24,10 @@ class EmailModule:
     def Run(self):
         if self.Email:
             if EmailValidater.IsEmailExists(self.Email):
-                #print(f"[+] {self.Email} exists\nGathering info...\n")
                 self.OutputLogger+=f"[+] {self.Email} exists\nGathering info...\n"
                 self.CheckForLeaks()
                 self.CheckServices()
                 self.PrintOutput()
 
             else:
-                print(
-                    f"[-] {self.Email} doesn't exists\nSkipping email info gathering...\n"
-                )
+                print(f"[-] {self.Email} doesn't exists\nSkipping email info gathering...\n")

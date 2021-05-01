@@ -31,6 +31,4 @@ class PhoneModule:
                 self.OutputLogger+=f"[+] {self.PhoneNumber} exists\nGathering info...\n[+] Country code: {self.PhoneConverter.GetCountryCode()}"
                 self.PrintOutput()
             else:
-                print(
-                    f"[-] {self.PhoneNumber} doesn't exist\nSkipping phone number info gathering...\n"
-                )
+                print(f"[-] {self.PhoneNumber} doesn't exist\nSkipping phone number info gathering...\n")
