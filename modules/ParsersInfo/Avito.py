@@ -1,6 +1,9 @@
 #TODO
-import urllib3
+import requests
 class Avito:
-    @staticmethod
-    def GetInfoAboutPhoneNumber(phone: str) -> str:
-        pass
+	websites={
+	"AviFinder":"https://avifinder.ru/?s=%2B{}"
+	}
+	@staticmethod
+	def GetInfoAboutPhoneNumber(phone: str):
+		return requests.get(Avito.websites["AviFinder"].format(phone))    	
