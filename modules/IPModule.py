@@ -1,11 +1,11 @@
 from .ParsersInfo.IPParser import IPParser
+from .Module import Module
 
-
-class IPModule:
+class IPModule(Module):
     def __init__(self, ip: str):
         self.IP = ip
         self.Parser = IPParser(self.IP)
-        self.OutputLogger=""
+        super().__init__()
 
     def CleanData(self, data: dict) -> dict:
         list_to_delete = ["status", "zip", "query", "region", "countryCode"]
@@ -18,20 +18,9 @@ class IPModule:
             return True
         return False
 
-    def PrintOutput(self):
-        print(f"{self.OutputLogger}")
-    
-    def SetData(self, data:str):
-        if data:
-            self.OutputLogger=data
-    
-    def AddData(self, data:str):
-        if data:
-            self.OutputLogger+=data
-
     def AddCleanedDataToOutput(self):
         for key in self.CleanData(self.Parser.GetData()):
-            self.OutputLogger+=f"    [+] {key}: {self.Parser.GetData()[key]}\n"
+            self.AddData(f"    [+] {key}: {self.Parser.GetData()[key]}\n")
         
     def Run(self):
         if self.IP:

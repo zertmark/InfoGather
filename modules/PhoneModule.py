@@ -3,11 +3,11 @@ from .ParsersInfo.Facebook import Facebook
 from .ParsersInfo.VK import VK
 from .ParsersInfo.WhatsUp import WhatsUp
 from .ParsersInfo.PhoneConverter import PhoneConverter
-
+from .Module import Module
 #COLOR='\033[32m'
 #STYLE='\033[1m'
 #RESET='\033[0m'
-class PhoneModule:
+class PhoneModule(Module):
     def __init__(self, phone: str, country=""):
         self.PhoneNumber = phone
         self.Country = country
@@ -18,9 +18,6 @@ class PhoneModule:
     def setPhoneNumber(self, new_phone_number: str):
         if new_phone_number:
             self.PhoneNumber = new_phone_number
-    
-    def PrintOutput(self):
-        print(f"{self.OutputLogger}")
 
     def Run(self):
         if self.PhoneNumber:
@@ -28,7 +25,9 @@ class PhoneModule:
                 self.setPhoneNumber(
                     self.PhoneConverter.GetConvertedPhoneNumber())
 
-                self.OutputLogger+=f"[+] {self.PhoneNumber} exists\nGathering info...\n[+] Country code: {self.PhoneConverter.GetCountryCode()}"
+                self.AddData(
+                    f"[+] {self.PhoneNumber} exists\n[+] Gathering info...\n    [+] Country code: {self.PhoneConverter.GetCountryCode()}\n")
+                self.AddData(str(Avito.GetInfoAboutPhoneNumber(self.PhoneNumber)))
                 self.PrintOutput()
             else:
                 print(f"[-] {self.PhoneNumber} doesn't exist\nSkipping phone number info gathering...\n")
