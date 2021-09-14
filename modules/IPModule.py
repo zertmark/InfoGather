@@ -14,9 +14,7 @@ class IPModule(Module):
         return data
 
     def IsExists(self, data: dict) -> bool:
-        if data and data["status"] != "fail":
-            return True
-        return False
+        return True if data and data["status"] != "fail" else False
 
     def AddCleanedDataToOutput(self):
         for key in self.CleanData(self.Parser.GetData()):
